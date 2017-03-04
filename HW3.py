@@ -59,7 +59,7 @@
 
 # In[87]:
 
-import pandas as pd
+#import pandas as pd
 #help(pd.read_excel)
 
 
@@ -316,7 +316,7 @@ energy
 
 # In[125]:
 
-gdp = pd.DataFrame.from_csv('world_bank.csv')
+gdp = pd.DataFrame.from_csv('course1_downloads/world_bank.csv')
 gdp
 
 
@@ -371,7 +371,7 @@ GDP = gdp
 
 # In[132]:
 
-ScimEn = pd.read_excel('scimagojr-3.xlsx')
+ScimEn = pd.read_excel('course1_downloads/scimagojr-3.xlsx')
 ScimEn
 
 
@@ -527,9 +527,9 @@ energy_gdp_sci_mx
 # In[154]:
 
 
-def answer_one():
+#def answer_one():
     
-    return "ANSWER"
+ #   return "ANSWER"
 
 
 # In[155]:
@@ -544,13 +544,13 @@ df = energy_gdp_sci_mx
 
 # In[156]:
 
-get_ipython().run_cell_magic('HTML', '', '<svg width="800" height="300">\n  <circle cx="150" cy="180" r="80" fill-opacity="0.2" stroke="black" stroke-width="2" fill="blue" />\n  <circle cx="200" cy="100" r="80" fill-opacity="0.2" stroke="black" stroke-width="2" fill="red" />\n  <circle cx="100" cy="100" r="80" fill-opacity="0.2" stroke="black" stroke-width="2" fill="green" />\n  <line x1="150" y1="125" x2="300" y2="150" stroke="black" stroke-width="2" fill="black" stroke-dasharray="5,3"/>\n  <text  x="300" y="165" font-family="Verdana" font-size="20">Everything but this!</text>\n</svg>')
+#get_ipython().run_cell_magic('HTML', '', '<svg width="800" height="300">\n  <circle cx="150" cy="180" r="80" fill-opacity="0.2" stroke="black" stroke-width="2" fill="blue" />\n  <circle cx="200" cy="100" r="80" fill-opacity="0.2" stroke="black" stroke-width="2" fill="red" />\n  <circle cx="100" cy="100" r="80" fill-opacity="0.2" stroke="black" stroke-width="2" fill="green" />\n  <line x1="150" y1="125" x2="300" y2="150" stroke="black" stroke-width="2" fill="black" stroke-dasharray="5,3"/>\n  <text  x="300" y="165" font-family="Verdana" font-size="20">Everything but this!</text>\n</svg>')
 
 
 # In[157]:
 
-def answer_two():
-    return "ANSWER"
+#def answer_two():
+#    return "ANSWER"
 
 
 # <br>
@@ -605,9 +605,9 @@ df.sort(columns='avgGDP', axis=0, ascending=False, inplace=True, kind='quicksort
 
 # In[161]:
 
-def answer_three():
-    Top15 = answer_one()
-    return "ANSWER"
+#def answer_three():
+#    Top15 = answer_one()
+#    return "ANSWER"
 
 
 # ### Question 4 (6.6%)
@@ -653,9 +653,9 @@ df[5:6]['GDPrange']
 
 # In[165]:
 
-def answer_four():
-    Top15 = answer_one()
-    return "ANSWER"
+#def answer_four():
+#    Top15 = answer_one()
+#    return "ANSWER"
 
 
 # ### Question 5 (6.6%)
@@ -671,9 +671,9 @@ print('The mean Energy Supply per Capita is {} gigajoules.'.format(df['Energy Su
 
 # In[167]:
 
-def answer_five():
-    Top15 = answer_one()
-    return "ANSWER"
+#def answer_five():
+ #   Top15 = answer_one()
+  #  return "ANSWER"
 
 
 # ### Question 6 (6.6%)
@@ -691,30 +691,28 @@ list(df)
 #You just need the argmax() (now called idxmax) function. It's straightforward:
 df['% Renewable 2013'].idxmax() # me regresa indice
 # quiero pasar indice a otro comanda
-def answer():
-    tuple = [df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0)]
-    return tuple
+most_renewable_country = [df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0)]
+print(most_renewable_country)
+#def answer():
+ # tuple = [df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0)]
+  #return tuple
 
 
 # In[170]:
 
-answer()
 #def answer_six():
  #   Top15 = answer_one()
 #  return "ANSWER"
 
 
 # In[171]:
-
-country = df.loc[df['% Renewable 2013'].idxmax()
+country = df.loc[df['% Renewable 2013'].idxmax()]
 
 
 
 # In[172]:
 
-print(("The country with the highest proportion of renewable energy is {} with {} percent renewable energy."
-  .format(df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0))))
-
+print(("The country with the highest proportion of renewable energy is {} with {} percent renewable energy.".format(df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0))))
 
 # ### Question 7 (6.6%)
 # Create a new column that is the ratio of Self-Citations to Total Citations. 
@@ -755,9 +753,9 @@ answer2()
 
 # In[177]:
 
-def answer_seven():
-    Top15 = answer_one()
-    return "ANSWER"
+#def answer_seven():
+ #   Top15 = answer_one()
+  #  return "ANSWER"
 
 
 # ### Question 8 (6.6%)
@@ -781,9 +779,9 @@ df[2:3]
 
 # In[180]:
 
-def answer_eight():
-    Top15 = answer_one()
-    return "ANSWER"
+#def answer_eight():
+ #   Top15 = answer_one()
+  #  return "ANSWER"
 
 
 # ### Question 9 (6.6%)
@@ -802,29 +800,26 @@ df
 
 # In[182]:
 
-print('The correlation between energy supply per person and energy publications per person is {}.'
-      .format(df.corr().loc['Energy Supply per Capita 2013']['Docs per person']))
-
-
-# In[183]:
-
+print('The correlation between energy supply per person and energy publications per person is {}.'.format(df.corr().loc['Energy Supply per Capita 2013']['Docs per person']))
 df.corr()
 
 
 # In[184]:
 
+
+
 df.columns = ['Population estimate 2013' if x=='Population' 
-              else 'Energy documents per person estimate (Docs 1996-2015, Population 2013)' 
-              if x=='Docs per person'
-              else x for x in df.columns]
+  else 'Energy documents per person estimate (Docs 1996-2015, Population 2013)' 
+  if x=='Docs per person'
+  else x for x in df.columns]
 df
 
 
 # In[185]:
 
-def answer_nine():
-    Top15 = answer_one()
-    return "ANSWER"
+#def answer_nine():
+ #   Top15 = answer_one()
+  #  return "ANSWER"
 
 
 # In[186]:
@@ -841,28 +836,32 @@ def answer_nine():
 
 # In[187]:
 
+print ("code executed until this line! 839")
+print ("df value is: ")
+print (df)
+
 import matplotlib as plt
 
 
-# In[188]:
+# # In[188]:
 
-for i in range(0,16):
-    print('plt.pyplot.text(docs[{}],energy[{}],labels[{}])'.format(i,i,i))
-
-
-# In[ ]:
+#for i in range(0,16):
+ #   print('plt.pyplot.text(docs[{}],energy[{}],labels[{}])'.format(i,i,i))
 
 
+# # In[ ]:
 
 
-# In[ ]:
 
-get_ipython().magic('matplotlib inline')
+
+# # In[ ]:
+
+# #get_ipython().magic('matplotlib inline')
 
 df.plot(x='Energy documents per person estimate (Docs 1996-2015, Population 2013)',
-       y='Energy Supply per Capita 2013',
-       kind='scatter',
-       xlim=[0, 0.0006])
+  y='Energy Supply per Capita 2013',
+  kind='scatter',
+  xlim=[0, 0.0006])
 plt.pyplot.suptitle('Energy publications and Energy supply per Capita')
 plt.pyplot.xlabel('Energy Publications per Capita \n(Total documents 1996-2015/Population 2013)')
 plt.pyplot.ylabel('Energy Supply per Capita \n(Gigajoules 2013)')
@@ -885,6 +884,8 @@ plt.pyplot.text(docs[12],energy[12]+10,labels[12])
 plt.pyplot.text(docs[13],energy[13]-10,labels[13])
 plt.pyplot.text(docs[14],energy[14],labels[14])
 plt.pyplot.text(docs[15],energy[15],labels[15])
+plt.pyplot.show()
+
 #for i in range(0,16):
 #    plt.pyplot.text(docs[i],energy[i],labels[i])
 #plt.pyplot.text(docs[1],energy[1],labels[1])
@@ -910,22 +911,22 @@ plt.pyplot.text(docs[15],energy[15],labels[15])
 
 # In[ ]:
 
-print(type(labels))
-labels
+# print(type(labels))
+# labels
 
 
-# In[ ]:
+# # In[ ]:
 
-import matplotlib.pyplot as plt2
-docs = df['Energy documents per person estimate (Docs 1996-2015, Population 2013)']
-energy = df['Energy Supply per Capita 2013']
-labels = df['Country']
+# import matplotlib.pyplot as plt2
+# docs = df['Energy documents per person estimate (Docs 1996-2015, Population 2013)']
+# energy = df['Energy Supply per Capita 2013']
+# labels = df['Country']
 
-fig, ax = plt2.subplots()
-ax.scatter(docs, energy)
+# fig, ax = plt2.subplots()
+# ax.scatter(docs, energy)
 
-for i, text in enumerate(labels):
-    ax.annotate(text, (docs[i],energy[i]))
+# for i, text in enumerate(labels):
+#     ax.annotate(text, (docs[i],energy[i]))
 
 
 # In[ ]:
@@ -940,9 +941,9 @@ for i, text in enumerate(labels):
 
 # In[ ]:
 
-def answer_ten():
-    Top15 = answer_one()
-    return "ANSWER"
+#def answer_ten():
+ #   Top15 = answer_one()
+  #  return "ANSWER"
 
 
 # ### Question 11 (6.6%)
@@ -970,9 +971,9 @@ def answer_ten():
 
 # In[ ]:
 
-def answer_eleven():
-    Top15 = answer_one()
-    return "ANSWER"
+#def answer_eleven():
+ #   Top15 = answer_one()
+  #  return "ANSWER"
 
 
 # ### Question 12 (6.6%)
@@ -982,9 +983,9 @@ def answer_eleven():
 
 # In[ ]:
 
-def answer_twelve():
-    Top15 = answer_one()
-    return "ANSWER"
+#def answer_twelve():
+ #   Top15 = answer_one()
+  #  return "ANSWER"
 
 
 # ### Question 13 (6.6%)
@@ -996,9 +997,9 @@ def answer_twelve():
 
 # In[ ]:
 
-def answer_thirteen():
-    Top15 = answer_one()
-    return "ANSWER"
+#def answer_thirteen():
+ #   Top15 = answer_one()
+  #  return "ANSWER"
 
 
 # ### Optional
@@ -1007,20 +1008,20 @@ def answer_thirteen():
 
 # In[ ]:
 
-def plot_optional():
-    import matplotlib as plt
-    get_ipython().magic('matplotlib inline')
-    Top15 = answer_one()
-    ax = Top15.plot(x='Rank', y='% Renewable', kind='scatter', 
-                    c=['#e41a1c','#377eb8','#e41a1c','#4daf4a','#4daf4a','#377eb8','#4daf4a','#e41a1c',
-                       '#4daf4a','#e41a1c','#4daf4a','#4daf4a','#e41a1c','#dede00','#ff7f00'], 
-                    xticks=range(1,16), s=6*Top15['2014']/10**10, alpha=.75, figsize=[16,6]);
+#def plot_optional():
+ #   import matplotlib as plt
+    #get_ipython().magic('matplotlib inline')
+  #  Top15 = answer_one()
+   # ax = Top15.plot(x='Rank', y='% Renewable', kind='scatter', 
+    #                c=['#e41a1c','#377eb8','#e41a1c','#4daf4a','#4daf4a','#377eb8','#4daf4a','#e41a1c',
+      #                 '#4daf4a','#e41a1c','#4daf4a','#4daf4a','#e41a1c','#dede00','#ff7f00'], 
+     #              xticks=range(1,16), s=6*Top15['2014']/10**10, alpha=.75, figsize=[16,6]);
 
-    for i, txt in enumerate(Top15.index):
-        ax.annotate(txt, [Top15['Rank'][i], Top15['% Renewable'][i]], ha='center')
+    #for i, txt in enumerate(Top15.index):
+     #   ax.annotate(txt, [Top15['Rank'][i], Top15['% Renewable'][i]], ha='center')
 
-    print("This is an example of a visualization that can be created to help understand the data. This is a bubble chart showing % Renewable vs. Rank. The size of the bubble corresponds to the countries' 2014 GDP, and the color corresponds to the continent.")
-
+#print("This is an example of a visualization that can be created to help understand the data. This is a bubble chart showing % Renewable vs. Rank. The size of the bubble corresponds to the countries' 2014 GDP, and the color corresponds to the continent.")
+print("Thank you, Homero.")
 
 # In[ ]:
 
@@ -1028,6 +1029,9 @@ def plot_optional():
 
 
 # In[ ]:
+
+
+
 
 
 
