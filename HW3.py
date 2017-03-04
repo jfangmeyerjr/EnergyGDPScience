@@ -178,9 +178,9 @@ energy.replace(to_replace = ('United States of America', 'United Kingdom of Grea
 
 # In[105]:
 
-print(energy.loc['United States of America'])
-print(energy.loc['United Kingdom of Great Britain and Northern Ireland'])
-print(energy.loc['China, Hong Kong Special Administrative Region'])
+#print(energy.loc['United States of America'])
+#print(energy.loc['United Kingdom of Great Britain and Northern Ireland'])
+#print(energy.loc['China, Hong Kong Special Administrative Region'])
 
 
 # In[106]:
@@ -293,8 +293,8 @@ smallnamesdf
 
 old_names_list = smallnamesdf['Country'].tolist() #get bad names
 new_names_list = smallnamesdf['Index'].tolist() # set good names
-print(old_names_list)
-print(new_names_list)
+#print(old_names_list)
+#print(new_names_list)
 
 
 # In[123]:
@@ -428,7 +428,7 @@ energy_gdp_sci
 
 # In[140]:
 
-print(len(energy), len(GDP), len(ScimEn), len(energy_gdp), len(energy_gdp_sci))
+#print(len(energy), len(GDP), len(ScimEn), len(energy_gdp), len(energy_gdp_sci))
 
 
 # In[141]:
@@ -452,8 +452,8 @@ energy_gdp_sci_columns = energy_gdp_sci #save work
 # In[144]:
 
 energy_gdp_sci = energy_gdp_sci_columns #recover position
-print(list(energy_gdp_sci))
-print(len(energy))
+#print(list(energy_gdp_sci))
+#print(len(energy))
 
 
 # In[145]:
@@ -576,6 +576,17 @@ df['avgGDP'] = df[['2006 GDP (in 2010 USD)',
  '2015 GDP (in 2010 USD)']].mean(axis=1)
 df
 
+answer_3 = df[['Country','avgGDP']]
+
+# DataFrame.to_csv(path_or_buf=None, sep=', ', na_rep='', float_format=None, 
+#   columns=None, header=True, index=True, index_label=None, mode='w', encoding=None, 
+#   compression=None, quoting=None, quotechar='"', line_terminator='\n', chunksize=None, tupleize_cols=False, 
+#   date_format=None, doublequote=True, escapechar=None, decimal='.')
+
+answer_3.to_csv('Average GDP.csv')
+
+
+
 
 # In[159]:
 
@@ -666,7 +677,7 @@ df[5:6]['GDPrange']
 # In[166]:
 
 #print('The enemey gets hit for {} hitpoints'.format(damage))
-print('The mean Energy Supply per Capita is {} gigajoules.'.format(df['Energy Supply per Capita 2013'].mean()))
+print('The mean Energy Supply per Capita in the fifteen richest countries and Mexico is {} gigajoules.'.format(df['Energy Supply per Capita 2013'].mean()))
 
 
 # In[167]:
@@ -692,7 +703,7 @@ list(df)
 df['% Renewable 2013'].idxmax() # me regresa indice
 # quiero pasar indice a otro comanda
 most_renewable_country = [df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0)]
-print(most_renewable_country)
+#print(most_renewable_country)
 #def answer():
  # tuple = [df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0)]
   #return tuple
@@ -836,9 +847,7 @@ df
 
 # In[187]:
 
-print ("code executed until this line! 839")
-print ("df value is: ")
-print (df)
+
 
 import matplotlib as plt
 
