@@ -564,7 +564,7 @@ df = energy_gdp_sci_mx
 
 # In[158]:
 
-df['avgGDP'] = df[['2006 GDP (in 2010 USD)',
+df['Avg. GDP 2006-2015 (in 2010 USD)'] = df[['2006 GDP (in 2010 USD)',
  '2007 GDP (in 2010 USD)',
  '2008 GDP (in 2010 USD)',
  '2009 GDP (in 2010 USD)',
@@ -576,7 +576,16 @@ df['avgGDP'] = df[['2006 GDP (in 2010 USD)',
  '2015 GDP (in 2010 USD)']].mean(axis=1)
 df
 
-answer_3 = df[['Country','avgGDP']]
+# In[159]:
+
+list(df)
+
+
+# In[160]:
+
+#energy_gdp_sci.sort(columns='Rank', axis=0, ascending=True, inplace=False, kind='quicksort', na_position='last')
+df.sort(columns='Avg. GDP 2006-2015 (in 2010 USD)', axis=0, ascending=False, inplace=True, kind='quicksort', na_position='last')
+answer_3 = df[['Country','Avg. GDP 2006-2015 (in 2010 USD)']]
 
 # DataFrame.to_csv(path_or_buf=None, sep=', ', na_rep='', float_format=None, 
 #   columns=None, header=True, index=True, index_label=None, mode='w', encoding=None, 
@@ -586,26 +595,15 @@ answer_3 = df[['Country','avgGDP']]
 answer_3.to_csv('Average GDP.csv')
 
 import matplotlib.pyplot as plt3
-import pandas as pd
 from pandas.tools.plotting import table
 
 ax = plt3.subplot(111, frame_on=False) # no visible frame
 ax.xaxis.set_visible(False)  # hide the x axis
 ax.yaxis.set_visible(False)  # hide the y axis
 
-table(ax, df[['Country','avgGDP']])  # where df is your data frame
+table(ax, df[['Country','Avg. GDP 2006-2015 (in 2010 USD)']])  # where df is your data frame
 
-plt3.savefig('mytable.png')
-
-# In[159]:
-
-list(df)
-
-
-# In[160]:
-
-#energy_gdp_sci.sort(columns='Rank', axis=0, ascending=True, inplace=False, kind='quicksort', na_position='last')
-df.sort(columns='avgGDP', axis=0, ascending=False, inplace=True, kind='quicksort', na_position='last')
+plt3.savefig('Average GDP.png')
 
 
 # In[ ]:
@@ -632,7 +630,7 @@ df.sort(columns='avgGDP', axis=0, ascending=False, inplace=True, kind='quicksort
 
 # ### Question 4 (6.6%)
 # By how much had the GDP changed over the 10 year span for the country with the 6th largest average GDP?
-# 
+# How much did Mexico's GDP change from 2006 to 2015?
 # *This function should return a single number.*
 
 # In[162]:
@@ -667,8 +665,13 @@ df
 
 
 # In[164]:
+#df.iloc[3,4]
+#df.at['row name', 'col name']
 
-df[5:6]['GDPrange']
+
+
+conclusion_1 = ("Mexico's GDP grew from ${} in 2006 to ${} in 2015 (2010 USD).".
+  format(df.at[97,'2006 GDP (in 2010 USD)'],df.at[97,'2015 GDP (in 2010 USD)']))
 
 
 # In[165]:
@@ -686,7 +689,7 @@ df[5:6]['GDPrange']
 # In[166]:
 
 #print('The enemey gets hit for {} hitpoints'.format(damage))
-print('The mean Energy Supply per Capita in the fifteen richest countries and Mexico is {} gigajoules.'.format(df['Energy Supply per Capita 2013'].mean()))
+conlcusion_2 = ('The mean Energy Supply per Capita in the fifteen richest countries and Mexico is {} gigajoules.'.format(df['Energy Supply per Capita 2013'].mean()))
 
 
 # In[167]:
@@ -732,7 +735,7 @@ country = df.loc[df['% Renewable 2013'].idxmax()]
 
 # In[172]:
 
-print(("The country with the highest proportion of renewable energy is {} with {} percent renewable energy.".format(df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0))))
+conclusion_3 = ("The country with the highest proportion of renewable energy is {} with {} percent renewable energy.".format(df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0)))
 
 # ### Question 7 (6.6%)
 # Create a new column that is the ratio of Self-Citations to Total Citations. 
@@ -769,7 +772,10 @@ def answer2():
                  .format(country2, data2))
     return
 answer2()
-
+country2 = df.loc[df['Self-citation Ratio'].idxmax()]['Country']
+data2 = df['Self-citation Ratio'].max(axis=0)
+conclusion_4 = ('The country with the highest self-citation ratio is {} and its ratio is {}.'
+                 .format(country2, data2))
 
 # In[177]:
 
@@ -782,7 +788,7 @@ answer2()
 # 
 # Create a column that estimates the population using Energy Supply and Energy Supply per capita. 
 # What is the third most populous country according to this estimate?
-# 
+# Estimate population of Mexico.
 # *This function should return a single string value.*
 
 # In[178]:
@@ -795,6 +801,9 @@ df[2:3]['Country']
 # In[179]:
 
 df[2:3]
+
+conclusion_5 = ("Mexico's approximate population in 2013 was {} people."
+  .format(df.at[97,'Population']))
 
 
 # In[180]:
@@ -820,7 +829,7 @@ df
 
 # In[182]:
 
-print('The correlation between energy supply per person and energy publications per person is {}.'.format(df.corr().loc['Energy Supply per Capita 2013']['Docs per person']))
+conclusion_6 = ('The correlation between energy supply per person and energy publications per person is {}.'.format(df.corr().loc['Energy Supply per Capita 2013']['Docs per person']))
 df.corr()
 
 
@@ -1039,6 +1048,12 @@ plt.pyplot.show()
      #   ax.annotate(txt, [Top15['Rank'][i], Top15['% Renewable'][i]], ha='center')
 
 #print("This is an example of a visualization that can be created to help understand the data. This is a bubble chart showing % Renewable vs. Rank. The size of the bubble corresponds to the countries' 2014 GDP, and the color corresponds to the continent.")
+
+txtoutput = open("Conclusions.txt", "w")
+txtoutput.write("{}\n{}\n{}\n{}\n{}\n{}"
+  .format(conclusion_1,conlcusion_2,conclusion_3,conclusion_4,conclusion_5,conclusion_6))
+txtoutput.close()
+
 print("Thank you, Homero.")
 
 # In[ ]:
