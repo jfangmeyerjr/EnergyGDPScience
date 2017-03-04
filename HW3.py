@@ -585,8 +585,17 @@ answer_3 = df[['Country','avgGDP']]
 
 answer_3.to_csv('Average GDP.csv')
 
+import matplotlib.pyplot as plt3
+import pandas as pd
+from pandas.tools.plotting import table
 
+ax = plt3.subplot(111, frame_on=False) # no visible frame
+ax.xaxis.set_visible(False)  # hide the x axis
+ax.yaxis.set_visible(False)  # hide the y axis
 
+table(ax, df[['Country','avgGDP']])  # where df is your data frame
+
+plt3.savefig('mytable.png')
 
 # In[159]:
 
