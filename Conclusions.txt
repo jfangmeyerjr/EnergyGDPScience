@@ -4,3 +4,5 @@ The country with the highest proportion of renewable energy is Brazil with 69.64
 The country with the highest self-citation ratio is China and its ratio is 0.6893126179389422.
 Mexico's approximate population in 2013 was 124125000.0 people.
 The correlation between energy supply per person and energy publications per person is 0.813698350179646.
+The median % Renewable energy in the fifteen richest countries and Mexico is 15.994679999999999%.
+The countries with more % renewable energy than the median are ['China', 'Brazil', 'Russian Federation', 'Germany', 'France', 'Italy', 'Spain', 'Canada'].

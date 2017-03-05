@@ -67,6 +67,7 @@
 
 import pandas as pd
 import numpy as np
+conclusions = []
 energy = pd.read_excel('Energy Indicators.xls') 
 energy = energy[16:] #cut out header
 
@@ -439,7 +440,8 @@ years_to_delete
 
 # In[142]:
 
-goal_cols = ['Country','Rank', 'Documents', 'Citable documents', 'Citations', 'Self-citations', 'Citations per document', 'H index', 'Energy Supply', 'Energy Supply per Capita', '% Renewable', 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015]
+goal_cols = (['Country','Rank', 'Documents', 'Citable documents', 'Citations', 'Self-citations', 'Citations per document', 
+'H index', 'Energy Supply', 'Energy Supply per Capita', '% Renewable', 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015])
 energy_gdp_sci = energy_gdp_sci[goal_cols]
 energy_gdp_sci
 
@@ -594,16 +596,16 @@ answer_3 = df[['Country','Avg. GDP 2006-2015 (in 2010 USD)']]
 
 answer_3.to_csv('Average GDP.csv')
 
-import matplotlib.pyplot as plt3
-from pandas.tools.plotting import table
+#import matplotlib.pyplot as plt3
+#from pandas.tools.plotting import table
 
-ax = plt3.subplot(111, frame_on=False) # no visible frame
-ax.xaxis.set_visible(False)  # hide the x axis
-ax.yaxis.set_visible(False)  # hide the y axis
+# ax = plt3.subplot(111, frame_on=False) # no visible frame
+# ax.xaxis.set_visible(False)  # hide the x axis
+# ax.yaxis.set_visible(False)  # hide the y axis
 
-table(ax, df[['Country','Avg. GDP 2006-2015 (in 2010 USD)']])  # where df is your data frame
+# table(ax, df[['Country','Avg. GDP 2006-2015 (in 2010 USD)']])  # where df is your data frame
 
-plt3.savefig('Average GDP.png')
+# plt3.savefig('Average GDP.png')
 
 
 # In[ ]:
@@ -670,8 +672,8 @@ df
 
 
 
-conclusion_1 = ("Mexico's GDP grew from ${} in 2006 to ${} in 2015 (2010 USD).".
-  format(df.at[97,'2006 GDP (in 2010 USD)'],df.at[97,'2015 GDP (in 2010 USD)']))
+conclusions.append("Mexico's GDP grew from ${} in 2006 to ${} in 2015 (2010 USD)."
+  .format(df.at[97,'2006 GDP (in 2010 USD)'],df.at[97,'2015 GDP (in 2010 USD)']))
 
 
 # In[165]:
@@ -689,7 +691,8 @@ conclusion_1 = ("Mexico's GDP grew from ${} in 2006 to ${} in 2015 (2010 USD).".
 # In[166]:
 
 #print('The enemey gets hit for {} hitpoints'.format(damage))
-conlcusion_2 = ('The mean Energy Supply per Capita in the fifteen richest countries and Mexico is {} gigajoules.'.format(df['Energy Supply per Capita 2013'].mean()))
+conclusions.append('The mean Energy Supply per Capita in the fifteen richest countries and Mexico is {} gigajoules.'
+  .format(df['Energy Supply per Capita 2013'].mean()))
 
 
 # In[167]:
@@ -735,7 +738,8 @@ country = df.loc[df['% Renewable 2013'].idxmax()]
 
 # In[172]:
 
-conclusion_3 = ("The country with the highest proportion of renewable energy is {} with {} percent renewable energy.".format(df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0)))
+conclusions.append("The country with the highest proportion of renewable energy is {} with {} percent renewable energy."
+  .format(df.loc[df['% Renewable 2013'].idxmax()]['Country'],df['% Renewable 2013'].max(axis=0)))
 
 # ### Question 7 (6.6%)
 # Create a new column that is the ratio of Self-Citations to Total Citations. 
@@ -768,13 +772,13 @@ df
 def answer2():
     country2 = df.loc[df['Self-citation Ratio'].idxmax()]['Country']
     data2 = df['Self-citation Ratio'].max(axis=0)
-    print('The country with the highest self-citation ratio is {} and its ratio is {}.'
-                 .format(country2, data2))
+    #print('The country with the highest self-citation ratio is {} and its ratio is {}.'
+     #            .format(country2, data2))
     return
 answer2()
 country2 = df.loc[df['Self-citation Ratio'].idxmax()]['Country']
 data2 = df['Self-citation Ratio'].max(axis=0)
-conclusion_4 = ('The country with the highest self-citation ratio is {} and its ratio is {}.'
+conclusions.append('The country with the highest self-citation ratio is {} and its ratio is {}.'
                  .format(country2, data2))
 
 # In[177]:
@@ -802,7 +806,7 @@ df[2:3]['Country']
 
 df[2:3]
 
-conclusion_5 = ("Mexico's approximate population in 2013 was {} people."
+conclusions.append("Mexico's approximate population in 2013 was {} people."
   .format(df.at[97,'Population']))
 
 
@@ -829,7 +833,8 @@ df
 
 # In[182]:
 
-conclusion_6 = ('The correlation between energy supply per person and energy publications per person is {}.'.format(df.corr().loc['Energy Supply per Capita 2013']['Docs per person']))
+conclusions.append('The correlation between energy supply per person and energy publications per person is {}.'
+  .format(df.corr().loc['Energy Supply per Capita 2013']['Docs per person']))
 df.corr()
 
 
@@ -911,7 +916,7 @@ plt.pyplot.text(docs[12],energy[12]+10,labels[12])
 plt.pyplot.text(docs[13],energy[13]-10,labels[13])
 plt.pyplot.text(docs[14],energy[14],labels[14])
 plt.pyplot.text(docs[15],energy[15],labels[15])
-plt.pyplot.show()
+#plt.pyplot.show()
 
 #for i in range(0,16):
 #    plt.pyplot.text(docs[i],energy[i],labels[i])
@@ -972,28 +977,62 @@ plt.pyplot.show()
  #   Top15 = answer_one()
   #  return "ANSWER"
 
+ #DataFrame.median(axis=None, skipna=None, level=None, numeric_only=None)
+conclusions.append("The median % Renewable energy in the fifteen richest countries and Mexico is {}%."
+  .format(df.median(axis=0)['% Renewable 2013']))
+
+renewables = df['% Renewable 2013']
+median = df.median(axis=0)['% Renewable 2013']
+new_column = []
+for renewable in renewables:
+  if renewable > median:
+    new_column.append(1)
+  else:
+    new_column.append(0)
+#df['HighRenew2'] = [1 if x > median else 0 for x in df['% Renewable 2013']]
+
+df['HighRenew'] = new_column
+
+High_Renew_Countries = df[df['HighRenew'] == 1]['Country']
+
+conclusions.append("The countries with more % renewable energy than the median are {}."
+  .format(High_Renew_Countries.tolist()))
 
 # ### Question 11 (6.6%)
 # Use the following dictionary to group the Countries by Continent, then create a dateframe that displays the sample size (the number of countries in each continent bin), and the sum, mean, and std deviation for the estimated population of each country.
 # 
-# ```python
-# ContinentDict  = {'China':'Asia', 
-#                   'United States':'North America', 
-#                   'Japan':'Asia', 
-#                   'United Kingdom':'Europe', 
-#                   'Russian Federation':'Europe', 
-#                   'Canada':'North America', 
-#                   'Germany':'Europe', 
-#                   'India':'Asia',
-#                   'France':'Europe', 
-#                   'South Korea':'Asia', 
-#                   'Italy':'Europe', 
-#                   'Spain':'Europe', 
-#                   'Iran':'Asia',
-#                   'Australia':'Australia', 
-#                   'Brazil':'South America'}
-# ```
-# 
+
+ContinentDict  = {'China':'Asia', 
+                  'United States':'North America', 
+                  'Japan':'Asia', 
+                  'United Kingdom':'Europe', 
+                  'Russian Federation':'Europe', 
+                  'Canada':'North America', 
+                  'Germany':'Europe', 
+                  'India':'Asia',
+                  'France':'Europe', 
+                  'South Korea':'Asia', 
+                  'Italy':'Europe', 
+                  'Spain':'Europe', 
+                  'Iran':'Asia',
+                  'Australia':'Australia', 
+                  'Brazil':'South America',
+                  'Mexico':'North America'}
+
+df['Continent'] = [ContinentDict[country] for country in df['Country']]
+#df.set_index('Firstlevel', append=True, inplace=True)
+#df.set_index('Continent', append=True, inplace=True)
+grouped = df.groupby(['Continent'])
+Continentdf = pd.DataFrame()
+Continentdf['Member Countries'] = (grouped.size())
+Continentdf['Total Population'] = (grouped['Population estimate 2013'].sum())
+Continentdf['Average Population'] = (grouped['Population estimate 2013'].mean())
+Continentdf['Population St. Dev.'] = (grouped['Population estimate 2013'].std())
+
+Continentdf.to_csv('ContinentPopulations.csv')
+
+
+
 # *This function should return a DataFrame with index named Continent `['Asia', 'Australia', 'Europe', 'North America', 'South America']` and columns `['size', 'sum', 'mean', 'std']`*
 
 # In[ ]:
@@ -1008,6 +1047,14 @@ plt.pyplot.show()
 # 
 # *This function should return a __Series__ with a MultiIndex of `Continent`, then the bins for `% Renewable`. Do not include groups with no countries.*
 
+df.sort_values('% Renewable 2013', axis=0, ascending=True, inplace=True, kind='quicksort', na_position='last')
+df['Level Renewable'] = (['Q4','Q4','Q4','Q4',
+  'Q3','Q3','Q3','Q3',
+  'Q2','Q2','Q2','Q2',
+  'Q1','Q1','Q1','Q1',])
+
+ContinentQuartiles = (df.groupby(['Continent','Level Renewable']).size())
+ContinentQuartiles.to_csv('ContinentQuartiles.csv')
 # In[ ]:
 
 #def answer_twelve():
@@ -1050,9 +1097,10 @@ plt.pyplot.show()
 #print("This is an example of a visualization that can be created to help understand the data. This is a bubble chart showing % Renewable vs. Rank. The size of the bubble corresponds to the countries' 2014 GDP, and the color corresponds to the continent.")
 
 txtoutput = open("Conclusions.txt", "w")
-txtoutput.write("{}\n{}\n{}\n{}\n{}\n{}"
-  .format(conclusion_1,conlcusion_2,conclusion_3,conclusion_4,conclusion_5,conclusion_6))
+txtoutput.write('\n'.join(conclusions))
 txtoutput.close()
+
+
 
 print("Thank you, Homero.")
 
