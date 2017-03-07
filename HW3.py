@@ -1096,6 +1096,8 @@ ContinentQuartiles.to_csv('ContinentQuartiles.csv')
 
 #print("This is an example of a visualization that can be created to help understand the data. This is a bubble chart showing % Renewable vs. Rank. The size of the bubble corresponds to the countries' 2014 GDP, and the color corresponds to the continent.")
 
+df.to_csv('Energy-GDP-Science Indicators Data.csv')
+
 txtoutput = open("Conclusions.txt", "w")
 txtoutput.write('\n'.join(conclusions))
 txtoutput.close()
